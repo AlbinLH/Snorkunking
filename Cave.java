@@ -4,6 +4,20 @@ class Cave {
 	public Cave(Level[] clevels) {
 		this.levels = clevels;
 	}
+	
+	public int NbNiveau() {
+		return(levels.length);
+	}
+	
+	public void EraseLevel(int nombre) {
+		Level[] levels2 = new Level[levels.length - 1];
+		for (int i = 0 ; i < levels.length ; i++) {
+			if (i != nombre) {
+				levels2[i] = levels[i];
+			}
+		}
+		levels = levels2;
+	}
 
 	public static Cave initCave(int ID) {
 		if (ID == 1) {

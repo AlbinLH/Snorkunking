@@ -5,7 +5,7 @@ public class Stage {
 		this.oxygen = coxygen;
 	}
 
-	public int initOxygene(int nbDeNiveau) {
+	public static int initOxygene(int nbDeNiveau) {
 		int oxygene = 2 * nbDeNiveau;
 		return (oxygene);
 	}

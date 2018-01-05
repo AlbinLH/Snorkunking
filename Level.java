@@ -6,7 +6,7 @@ public class Level {
 		//this.players = cplayers;
 		this.chests = cchests;
 		}
-	public static Level StartingLevel() {
+	public Level StartingLevel() {
 		Level startinglevel = new Level(null);
 		return(startinglevel);
 	}

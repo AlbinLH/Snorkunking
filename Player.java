@@ -9,9 +9,13 @@ public class Player {
 		this.currentLevel = ccurrentLevel;
 	}
 
-	public static Player initPlayer(String name, Level StartingLevel) {
-		Player player = new Player(name, 0, StartingLevel);
+	public static Player initPlayer(String name) {
+		Player player = new Player(name, 0, null);
 		return(player); 
 	}
+	public static Level LevelGet(Player player) {
+		return(player.currentLevel);
+	}
+	// Scoring en fin de stage 
 
 }
