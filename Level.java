@@ -10,4 +10,11 @@ public class Level {
 		Level startinglevel = new Level(null);
 		return(startinglevel);
 	}
+	public int[] getNbCoffre(Level level) {
+		int[] list = new int[level.chests.length];
+		for (int i = 0; i < level.chests.length; i++) {
+			list[i] = level.chests[i].treasureNumber;
+		}
+		return(list);
+	}
 }
