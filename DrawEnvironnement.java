@@ -10,16 +10,19 @@ public class DrawEnvironnement {
 	static double tailleNiv1;
 	static double tailleNiv2;
 	static double tailleNiv3;
-	static boolean i = true;
+	static boolean once = true;
 	static double nbLevelIni1 = 0.0;
 	static double nbLevelIni2 = 0.0;
 	static double nbLevelIni3 = 0.0;
 	static double nbLevels1 = 9.0;
 	static double nbLevels2 = 6.0;
 	static double nbLevels3 = 4.0;
-	static ArrayList<Double> positionY1 = new ArrayList<Double>();
-	static ArrayList<Double> positionY2 = new ArrayList<Double>();
-	static ArrayList<Double> positionY3 = new ArrayList<Double>();
+	// static ArrayList<Double> positionY1 = new ArrayList<Double>();
+	// static ArrayList<Double> positionY2 = new ArrayList<Double>();
+	// static ArrayList<Double> positionY3 = new ArrayList<Double>();
+	static double positionY1ini[] = new double[TableauxTresors.nbCoffres1];
+	static double positionY2ini[] = new double[TableauxTresors.nbCoffres2];
+	static double positionY3ini[] = new double[TableauxTresors.nbCoffres3];
 
 	// initialisation caves
 	// static Cave cave1 = Cave.initCave(1);
@@ -39,13 +42,16 @@ public class DrawEnvironnement {
 			StdDraw.setXscale(-3 - InterfaceGraphique.WIDTH, InterfaceGraphique.X_MAX + InterfaceGraphique.WIDTH);
 			StdDraw.setYscale(-3 - InterfaceGraphique.WIDTH, InterfaceGraphique.X_MAX + InterfaceGraphique.WIDTH);
 			StdDraw.picture(0, 0,
-					"C:\\Users\\Yann-Ly\\eclipse-workspace\\VideoGame\\src\\ImageGame\\fond marin jeu java2.jpg", 6.3, 6.3);
-			StdDraw.picture(0, 2.885,
-					"C:\\Users\\Yann-Ly\\eclipse-workspace\\VideoGame\\src\\ImageGame\\sable.jpg", 2*(2.9+0.09f), 2*0.185);
-			StdDraw.picture(-1, 2.885,
-					"C:\\Users\\Yann-Ly\\eclipse-workspace\\VideoGame\\src\\ImageGame\\plongeur.jpg", 0.2, 0.37 - 0.01);
-			StdDraw.picture(1, 2.885,
-					"C:\\Users\\Yann-Ly\\eclipse-workspace\\VideoGame\\src\\ImageGame\\plongeur.jpg", 0.2, 0.37 - 0.01);
+					"C:\\Users\\Yann-Ly\\eclipse-workspace\\VideoGame\\src\\ImageGame\\fond marin jeu java2.jpg", 6.3,
+					6.3);
+			StdDraw.picture(0, 2.885, "C:\\Users\\Yann-Ly\\eclipse-workspace\\VideoGame\\src\\ImageGame\\sable.jpg",
+					2 * (2.9 + 0.09f), 2 * 0.185);
+			StdDraw.picture(-1, 2.885, "C:\\Users\\Yann-Ly\\eclipse-workspace\\VideoGame\\src\\ImageGame\\plongeur.jpg",
+					0.2, 0.37 - 0.01);
+			StdDraw.picture(1, 2.885, "C:\\Users\\Yann-Ly\\eclipse-workspace\\VideoGame\\src\\ImageGame\\plongeur.jpg",
+					0.2, 0.37 - 0.01);
+			CompteurJoueur.coffreHand1 = 0;
+			CompteurJoueur.coffreHand2 = 0;
 			nbLevels1 = nbLevels1 - nblevelUsed1;
 			nbLevels2 = nbLevels2 - nblevelUsed2;
 			nbLevels3 = nbLevels3 - nblevelUsed3;
@@ -59,20 +65,18 @@ public class DrawEnvironnement {
 		nombreLevels2 = nbLevels2;
 		nombreLevels3 = nbLevels3;
 
-		CompteurJoueur.coffreHand1 = 0;
-		CompteurJoueur.coffreHand2 = 0;
 
 		// dessin zone récup
 		// StdDraw.setPenColor(StdDraw.YELLOW);
 		StdDraw.rectangle(0, 2.885, 2.9 + 0.09f, 0.185);
 		StdDraw.picture(0, 2.885, "C:\\Users\\Yann-Ly\\eclipse-workspace\\VideoGame\\src\\ImageGame\\sable.jpg",
 				2 * (2.9 + 0.09f), 2 * 0.185);
-		while (i) {
+		while (once) {
 			StdDraw.picture(-1, 2.885, "C:\\Users\\Yann-Ly\\eclipse-workspace\\VideoGame\\src\\ImageGame\\plongeur.jpg",
 					0.2, 0.37 - 0.01);
 			StdDraw.picture(1, 2.885, "C:\\Users\\Yann-Ly\\eclipse-workspace\\VideoGame\\src\\ImageGame\\plongeur.jpg",
 					0.2, 0.37 - 0.01);
-			i = false;
+			once = false;
 		}
 
 		// dessins caves
@@ -89,26 +93,29 @@ public class DrawEnvironnement {
 		tailleLevel = 2 / nbLevels1;
 		// positionLevel = 1 - tailleLevel;
 		positionLevel = 2.7 - tailleLevel / 2;
-		StdDraw.setPenColor(StdDraw.GREEN);
 		for (int i = 1; i <= nbLevels1; i++) {
+			StdDraw.setPenColor(StdDraw.GREEN);
 			// StdDraw.line(-2.9 -0.09f,positionLevel,2.9+0.09f,positionLevel);
 			StdDraw.rectangle(0, positionLevel, 2.9 + 0.09f, tailleLevel / 2);
 			if (changePhase) {
-			StdDraw.picture(0, positionLevel,
-					"C:\\Users\\Yann-Ly\\eclipse-workspace\\VideoGame\\src\\ImageGame\\coffre pirate2.jpg", 0.2,
-					tailleLevel - 0.01);
-			//TableauxTresors.tresorsCave1[i - 1][1] = positionLevel;
-			positionY1.add(positionLevel);
+				StdDraw.picture(0, positionLevel,
+						"C:\\Users\\Yann-Ly\\eclipse-workspace\\VideoGame\\src\\ImageGame\\coffre pirate2.jpg", 0.2,
+						tailleLevel - 0.01);
+				// TableauxTresors.tresorsCave1[i - 1][1] = positionLevel;
+				positionY1ini[i-1] = positionLevel;
 			} else {
-				if (positionY1.contains(positionLevel)) {
+				if (Listes.contient(positionY1ini, positionLevel)) {
 					StdDraw.picture(0, positionLevel,
 							"C:\\Users\\Yann-Ly\\eclipse-workspace\\VideoGame\\src\\ImageGame\\coffre pirate2.jpg", 0.2,
 							tailleLevel - 0.01);
+
 				} else {
 					StdDraw.setPenColor(StdDraw.RED);
-	    			StdDraw.filledRectangle(0, positionLevel, 0.2, tailleLevel - 0.01);
-	    			StdDraw.text(0, positionLevel, "Empty");
+					StdDraw.filledRectangle(0, positionLevel, 0.2 / 2, (tailleLevel - 0.01) / 2);
+					StdDraw.setPenColor(StdDraw.BLACK);
+					StdDraw.text(0, positionLevel, "Empty");
 				}
+
 			}
 			positionLevel = positionLevel - tailleLevel;
 		}
@@ -133,8 +140,8 @@ public class DrawEnvironnement {
 			StdDraw.picture(0, positionLevel,
 					"C:\\Users\\Yann-Ly\\eclipse-workspace\\VideoGame\\src\\ImageGame\\coffre pirate2.jpg", 0.2,
 					tailleLevel - 0.01);
-			//TableauxTresors.tresorsCave2[i - 1][1] = positionLevel;
-			positionY2.add(positionLevel);
+			// TableauxTresors.tresorsCave2[i - 1][1] = positionLevel;
+			positionY2ini[i - 1] = positionLevel;
 			positionLevel = positionLevel - tailleLevel;
 		}
 		tailleNiv2 = tailleLevel;
@@ -150,8 +157,8 @@ public class DrawEnvironnement {
 			StdDraw.picture(0, positionLevel,
 					"C:\\Users\\Yann-Ly\\eclipse-workspace\\VideoGame\\src\\ImageGame\\coffre pirate2.jpg", 0.2,
 					tailleLevel - 0.01);
-			//TableauxTresors.tresorsCave3[i - 1][1] = positionLevel;
-			positionY3.add(positionLevel);
+			// TableauxTresors.tresorsCave3[i - 1][1] = positionLevel;
+			positionY3ini[i - 1] = positionLevel;
 			positionLevel = positionLevel - tailleLevel;
 		}
 		tailleNiv3 = tailleLevel;
@@ -166,11 +173,10 @@ public class DrawEnvironnement {
 		StdDraw.picture(2.8 + 0.09f - (1 - 0.09f) / 2, 0,
 				"C:\\Users\\Yann-Ly\\eclipse-workspace\\VideoGame\\src\\ImageGame\\sable3.jpg", (1.5 - 0.09f),
 				2 * (2.99 + 0.09f));
-		
+
 		// initialisation compteurs
 		CompteurJoueur.Compt(0, 0);
 		
-
 
 	}
 

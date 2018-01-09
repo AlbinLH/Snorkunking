@@ -9,8 +9,8 @@ public class Caracters {
 	public static double y1 = 2.885;
 	static int valeurTresorEnMain1 = 0;
 	static int valeurTresorEnMain2 = 0;
-	static ArrayList<Double> posy1 = new ArrayList<Double>();
-	static ArrayList<Double> posy2 = new ArrayList<Double>();
+	// static ArrayList<Double> posy1 = new ArrayList<Double>();
+	// static ArrayList<Double> posy2 = new ArrayList<Double>();
 	static double LevelUtilisé1 = 0.0;
 	static double LevelUtilisé2 = 0.0;
 	static double LevelUtilisé3 = 0.0;
@@ -228,52 +228,64 @@ public class Caracters {
 				break;
 				
 			    } else if (0.7 < y && y < 2.7) {
-			    	posy1.add(y);
-			    	for (int z = 0; z < DrawEnvironnement.positionY1.size(); z++) {
-			    		if (posy1.get(0).equals(DrawEnvironnement.positionY1.get(z))) {
+			    	//posy1.add(y);
+			    	int [] liste = new int[DrawEnvironnement.positionY1ini.length];
+			    	for (int z = 0; z < DrawEnvironnement.positionY1ini.length; z++) {
+			    		if (y - DrawEnvironnement.positionY1ini[z] <= Math.pow(10,-5) ) {
+			    			liste[z] = z;
+			    		} else {
+			    			liste[z] = 0; 
+			    			}
+			    			
+			    		}
+			    	int k = Listes.max(liste);
+	    			System.out.println("vrai");
+	    			//System.out.println(z);
+	    			//posy1.size() - 1
+	    			StdDraw.setPenColor(StdDraw.RED);
+	    			StdDraw.filledRectangle(0, y, 0.2/2, (DrawEnvironnement.tailleNiv1 - 0.01)/2);
+	    			StdDraw.setPenColor(StdDraw.BLACK);
+	    			StdDraw.text(0, y, "Empty");
+	    			valeurTresorEnMain1 =  valeurTresorEnMain1 + TableauxTresors.tresorsCave1ini[k];
+	    			CompteurJoueur.Compt(1, 0);
+	    			LevelUtilisé1 = LevelUtilisé1 + 1.0;
+	    			DrawEnvironnement.positionY1ini[k] = 0;
+	    			TableauxTresors.tresorsCave1ini[k] = 0;
+	    			//posy1.remove(0);
+			    	
+			    } else if (-1.3 < y && y < 0.7) {
+			    	//posy1.add(y);
+			    	for (int z = 0; z < DrawEnvironnement.positionY2ini.length; z++) {
+			    		if (y == DrawEnvironnement.positionY2ini[z]) {
 			    			System.out.println("vrai");
 			    			//posy1.size() - 1
 			    			StdDraw.setPenColor(StdDraw.RED);
-			    			StdDraw.filledRectangle(0, y, 0.2, DrawEnvironnement.tailleNiv1 - 0.01);
+			    			StdDraw.filledRectangle(0, y, 0.2, DrawEnvironnement.tailleNiv2 - 0.01);
 			    			StdDraw.text(0, y, "Empty");
-			    			valeurTresorEnMain1 =  valeurTresorEnMain1 + TableauxTresors.tresorsCave1.get(z);
-			    			CompteurJoueur.Compt(1, 0);
-			    			LevelUtilisé1 = LevelUtilisé1 + 1.0;
-			    			DrawEnvironnement.positionY1.remove(z);
-			    			TableauxTresors.tresorsCave1.remove(z);
-			    			posy1.remove(0);
-			    			
-			    		} else {
-			    			System.out.println("faux");
-			    		}
-			    	}
-			    } else if (-1.3 < y && y < 0.7) {
-			    	posy1.add(y);
-			    	for (int z = 0; z < DrawEnvironnement.positionY2.size(); z++) {
-			    		if (posy1.get(posy1.size() - 1).equals(DrawEnvironnement.positionY2.get(z))) {
-			    			StdDraw.setPenColor(StdDraw.RED);
-			    			StdDraw.rectangle(0, y, 0.2, DrawEnvironnement.tailleNiv2 - 0.01);
-			    			StdDraw.text(0, y, "Empty");
-			    			valeurTresorEnMain1 =  valeurTresorEnMain1 + TableauxTresors.tresorsCave2.get(z);
+			    			valeurTresorEnMain1 =  valeurTresorEnMain1 + TableauxTresors.tresorsCave2ini[z];
 			    			CompteurJoueur.Compt(1, 0);
 			    			LevelUtilisé2 = LevelUtilisé2 + 1.0;
-			    			DrawEnvironnement.positionY2.remove(z);
-			    			TableauxTresors.tresorsCave2.remove(z);
+			    			DrawEnvironnement.positionY2ini[z] = 0;
+			    			TableauxTresors.tresorsCave2ini[z] = 0;
+			    			//posy1.remove(0);
 			    		}
 			    	}
 			    			
 			    } else if (-3 < y && y < -1.3) {
-			    	posy1.add(y);
-			    	for (int z = 0; z < DrawEnvironnement.positionY3.size(); z++) {
-			    		if (posy1.get(posy1.size() - 1).equals(DrawEnvironnement.positionY3.get(z))) {
+			    	//posy1.add(y);
+			    	for (int z = 0; z < DrawEnvironnement.positionY3ini.length; z++) {
+			    		if (y == DrawEnvironnement.positionY3ini[z]) {
+			    			System.out.println("vrai");
+			    			//posy1.size() - 1
 			    			StdDraw.setPenColor(StdDraw.RED);
-			    			StdDraw.rectangle(0, y, 0.2, DrawEnvironnement.tailleNiv3 - 0.01);
+			    			StdDraw.filledRectangle(0, y, 0.2, DrawEnvironnement.tailleNiv3 - 0.01);
 			    			StdDraw.text(0, y, "Empty");
-			    			valeurTresorEnMain1 =  valeurTresorEnMain1 + TableauxTresors.tresorsCave3.get(z);
+			    			valeurTresorEnMain1 =  valeurTresorEnMain1 + TableauxTresors.tresorsCave3ini[z];
 			    			CompteurJoueur.Compt(1, 0);
 			    			LevelUtilisé3 = LevelUtilisé3 + 1.0;
-			    			DrawEnvironnement.positionY3.remove(z);
-			    			TableauxTresors.tresorsCave3.remove(z);
+			    			DrawEnvironnement.positionY3ini[z] = 0;
+			    			TableauxTresors.tresorsCave3ini[z] = 0;
+			    			//posy1.remove(0);
 			    		}
 			    	}
 			    }
