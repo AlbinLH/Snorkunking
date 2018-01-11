@@ -1,4 +1,4 @@
-import java.awt.Container;
+/*import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
@@ -131,7 +131,7 @@ public class MenuJeu extends JFrame {
 		};
 		imagePanel.setPreferredSize(new Dimension(640, 480));
 		menuBar.add(imagePanel);
-	}*/
+	}
 	public static void playerVSplayer() {
 		InterfaceGraphique jeu = new InterfaceGraphique();
 	}
@@ -139,4 +139,53 @@ public class MenuJeu extends JFrame {
 
 	
 
+}*/
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.*;
+
+	public class MenuJeu extends JFrame {
+
+	    JButton b1;
+	    JButton b2;
+	    JLabel l1;
+
+	    public MenuJeu() {
+
+	        setSize(1920,1080);
+	        
+
+	        setLayout(new BorderLayout());
+
+	        JLabel background=new JLabel(new ImageIcon("D:\\Documents\\Docs\\Programation\\Java\\JeuYann\\src\\P5210976.jpg"));
+
+	        add(background);
+
+	        background.setLayout(new FlowLayout());
+
+	        l1=new JLabel("Welcome to Snorkunking. Please choose your game mode");
+	        b1=new JButton("1 Player");
+	        b2=new JButton("2 Players");
+	        
+	        b1.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent ev) {
+                      //InterfaceGraphique.main();
+                }
+	        });
+
+	        background.add(l1);
+	        background.add(b1);
+	        background.add(b2);
+	        setVisible(true);
+	        
+	    }
+
+	    public static void main(String [] args) {
+	        new MenuJeu();
+	    }
+
 }
+
