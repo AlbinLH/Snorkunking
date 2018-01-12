@@ -14,9 +14,9 @@ public class DrawEnvironnement {
 	static double nbLevelIni1 = 0.0;
 	static double nbLevelIni2 = 0.0;
 	static double nbLevelIni3 = 0.0;
-	static double nbLevels1 = 9.0;
-	static double nbLevels2 = 6.0;
-	static double nbLevels3 = 4.0;
+	static double nbLevels1 = (double)(int)(Math.random()*3) + 9;
+	static double nbLevels2 = (double)(int)(Math.random()*3) + 6;
+	static double nbLevels3 = (double)(int)(Math.random()*3) + 3;
 	static double nbLevelTotal = nbLevels1 + nbLevels2 + nbLevels3;
 	// static ArrayList<Double> positionY1 = new ArrayList<Double>();
 	// static ArrayList<Double> positionY2 = new ArrayList<Double>();
@@ -39,9 +39,6 @@ public class DrawEnvironnement {
 		double tailleLevel;
 
 		if (changePhase) {
-			StdDraw.setCanvasSize(680, 700);
-			StdDraw.setXscale(-3 - InterfaceGraphique.WIDTH, InterfaceGraphique.X_MAX + InterfaceGraphique.WIDTH);
-			StdDraw.setYscale(-3 - InterfaceGraphique.WIDTH, InterfaceGraphique.X_MAX + InterfaceGraphique.WIDTH);
 			StdDraw.picture(0, 0,
 					"C:\\Users\\Yann-Ly\\eclipse-workspace\\VideoGame\\src\\ImageGame\\fond marin jeu java2.jpg", 6.3,
 					6.3);
@@ -58,6 +55,7 @@ public class DrawEnvironnement {
 			nbLevels3 = nbLevels3 - nblevelUsed3;
 			Oxygene.initOxygene(nbLevelTotal);
 			Oxygene.phase = Oxygene.phase + 1;
+			StdDraw.show(20);
 		}
 
 		nbLevelIni1 = nblevelUsed1;
@@ -208,6 +206,7 @@ public class DrawEnvironnement {
 
 		// initialisation compteurs
 		CompteurJoueur.Compt(0, 0);
+		//StdDraw.show(20);
 
 	}
 

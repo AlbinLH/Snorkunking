@@ -44,8 +44,9 @@ public class InterfaceGraphique {
 			}
 			//Thread.sleep(500);
 			// if (Caracters.getY() <= Caracters.getY1()) {
-			// System.out.println("player 1 GO!");
+			System.out.println("player 1 GO!");
 			StdDraw.text(0, 2.885, "joueur 2 GO!");
+			//StdDraw.show(20);
 			Thread.sleep(500);
 			if (StdDraw.isKeyPressed(KeyEvent.VK_DOWN)) {
 				Caracters.drawCaracters(0);
@@ -95,8 +96,9 @@ public class InterfaceGraphique {
 						DrawEnvironnement.tailleNiv3 - 0.01);
 			}
 			//Thread.sleep(500);
-			//System.out.println("player 2 GO!");
+			System.out.println("player 2 GO!");
 			StdDraw.text(0, 2.885, "joueur 1 GO!");
+			//StdDraw.show(20);
 			Thread.sleep(500);
 			if (StdDraw.isKeyPressed(KeyEvent.VK_DOWN)) {
 				Caracters.drawCaracters(3);
@@ -178,6 +180,9 @@ public class InterfaceGraphique {
 		// StdDraw.filledCircle(-1, 0.9, 0.1);
 		// StdDraw.setPenColor(StdDraw.RED);
 		// StdDraw.filledCircle(1, 0.9, 0.1);
+		StdDraw.setCanvasSize(680, 700);
+		StdDraw.setXscale(-3 - InterfaceGraphique.WIDTH, InterfaceGraphique.X_MAX + InterfaceGraphique.WIDTH);
+		StdDraw.setYscale(-3 - InterfaceGraphique.WIDTH, InterfaceGraphique.X_MAX + InterfaceGraphique.WIDTH);
 		DrawEnvironnement.draw(DrawEnvironnement.nbLevelIni1, DrawEnvironnement.nbLevelIni2,
 				DrawEnvironnement.nbLevelIni3, true);
 		TableauxTresors.IniContenuCoffres();

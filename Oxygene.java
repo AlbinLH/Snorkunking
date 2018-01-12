@@ -1,3 +1,4 @@
+import edu.princeton.cs.introcs.StdDraw;
 
 public class Oxygene {
 	static double oxygene = 0;
@@ -28,22 +29,22 @@ public class Oxygene {
 					tresorCave1[j] = TableauxTresors.tresorsCave1ini[i];
 					j++;
 				}
-				TableauxTresors.tresorsCave1ini = tresorCave1;
 			}
+			TableauxTresors.tresorsCave1ini = tresorCave1;
 			for (int i = 0; i < TableauxTresors.tresorsCave2ini.length; i++) {
 				if (TableauxTresors.tresorsCave2ini[i] != 0) {
 					tresorCave2[k] = TableauxTresors.tresorsCave2ini[i];
 					k++;
 				}
-				TableauxTresors.tresorsCave2ini = tresorCave2;
 			}
+			TableauxTresors.tresorsCave2ini = tresorCave2;
 			for (int i = 0; i < TableauxTresors.tresorsCave3ini.length; i++) {
 				if (TableauxTresors.tresorsCave3ini[i] != 0) {
 					tresorCave3[l] = TableauxTresors.tresorsCave3ini[i];
 					l++;
 				}
-				TableauxTresors.tresorsCave3ini = tresorCave3;
 			}
+			TableauxTresors.tresorsCave3ini = tresorCave3;
 			if (-3 < Caracters.getY() && Caracters.getY() < 2.7) {
 				TableauxTresors.tresorsCave3ini[TableauxTresors.tresorsCave3ini.length-1] = TableauxTresors.tresorsCave3ini[TableauxTresors.tresorsCave3ini.length-1] + Caracters.valeurTresorEnMain1;
 				Caracters.valeurTresorEnMain1 = 0;
@@ -55,7 +56,31 @@ public class Oxygene {
 			DrawEnvironnement.nbLevelIni1 = Caracters.LevelUtilisé1;
 			DrawEnvironnement.nbLevelIni2 = Caracters.LevelUtilisé2;
 			DrawEnvironnement.nbLevelIni3 = Caracters.LevelUtilisé3;
+			Caracters.y = 2.885;
+			Caracters.y1 = 2.885;
+			StdDraw.setPenColor(StdDraw.BLUE);
+			StdDraw.filledRectangle(0, 0, 6.3,6.3);
+			StdDraw.setPenColor(StdDraw.BLACK);
+			StdDraw.text(-1.5, 1.5, "fin de la phase:");
+			StdDraw.text(0, 1.5, Double.toString(Oxygene.phase));
+			StdDraw.text(-1.5, 1, "Joueur 1 possède:");
+			StdDraw.text(0, 1, Integer.toString(Caracters.valeurTresorSauvés1));
+			StdDraw.text(1, 1, "trésors");
+			StdDraw.text(-1.5, -1, "Joueur 2 possède:");
+			StdDraw.text(0, -1, Integer.toString(Caracters.valeurTresorSauvés2));
+			StdDraw.text(1, -1, "trésors");
+			StdDraw.show(20);
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 			DrawEnvironnement.draw(Caracters.LevelUtilisé1, Caracters.LevelUtilisé2, Caracters.LevelUtilisé3, true);
+			StdDraw.picture(-1, 2.885, "C:\\Users\\Yann-Ly\\eclipse-workspace\\VideoGame\\src\\ImageGame\\plongeur.jpg",
+					0.2, 0.37 - 0.01);
+			StdDraw.picture(1, 2.885, "C:\\Users\\Yann-Ly\\eclipse-workspace\\VideoGame\\src\\ImageGame\\plongeur.jpg",
+					0.2, 0.37 - 0.01);
+			StdDraw.show(20);
 		}
 
 	}

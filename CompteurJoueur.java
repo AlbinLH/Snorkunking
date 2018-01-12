@@ -48,7 +48,8 @@ public class CompteurJoueur {
 				StdDraw.text(2.8 + 0.09f - (1 - 0.09f) / 2, 0.6, "Phase:");
 				StdDraw.text(2.8 + 0.09f - (1 - 0.09f) / 2, 0.4, Double.toString(Oxygene.phase));
 			}
-
+			//StdDraw.show(20);
+			
 		} else if (2.7 < Caracters.getY1() && Caracters.getY1() < 3.07) {
 			StdDraw.setPenColor(StdDraw.RED);
 
@@ -73,6 +74,9 @@ public class CompteurJoueur {
 			StdDraw.setPenColor(StdDraw.BLUE);
 			StdDraw.text(2.8 + 0.09f - (1 - 0.09f) / 2, 0.6, "Phase:");
 			StdDraw.text(2.8 + 0.09f - (1 - 0.09f) / 2, 0.4, Double.toString(Oxygene.phase));
+			
+			//StdDraw.show(20);
+			
 
 		} else {
 			StdDraw.setPenColor(StdDraw.RED);
@@ -100,6 +104,9 @@ public class CompteurJoueur {
 			StdDraw.setPenColor(StdDraw.BLUE);
 			StdDraw.text(2.8 + 0.09f - (1 - 0.09f) / 2, 0.6, "Phase:");
 			StdDraw.text(2.8 + 0.09f - (1 - 0.09f) / 2, 0.4, Double.toString(Oxygene.phase));
+			
+			//StdDraw.show(20);
+			
 
 		}
 
