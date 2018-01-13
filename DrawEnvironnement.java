@@ -14,9 +14,9 @@ public class DrawEnvironnement {
 	static double nbLevelIni1 = 0.0;
 	static double nbLevelIni2 = 0.0;
 	static double nbLevelIni3 = 0.0;
-	static double nbLevels1 = (double)(int)(Math.random()*3) + 9;
-	static double nbLevels2 = (double)(int)(Math.random()*3) + 6;
-	static double nbLevels3 = (double)(int)(Math.random()*3) + 3;
+	static double nbLevels1 = /*(double) (int) (Math.random() * 3) + 9;*/ 3.0;
+	static double nbLevels2 = (double) (int) (Math.random() * 3) + 6;
+	static double nbLevels3 = (double) (int) (Math.random() * 3) + 3;
 	static double nbLevelTotal = nbLevels1 + nbLevels2 + nbLevels3;
 	// static ArrayList<Double> positionY1 = new ArrayList<Double>();
 	// static ArrayList<Double> positionY2 = new ArrayList<Double>();
@@ -54,7 +54,6 @@ public class DrawEnvironnement {
 			nbLevels2 = nbLevels2 - nblevelUsed2;
 			nbLevels3 = nbLevels3 - nblevelUsed3;
 			Oxygene.initOxygene(nbLevelTotal);
-			Oxygene.phase = Oxygene.phase + 1;
 			StdDraw.show(20);
 		}
 
@@ -89,37 +88,42 @@ public class DrawEnvironnement {
 		StdDraw.setPenColor(StdDraw.RED);
 		StdDraw.rectangle(0, -2.15, 2.9 + 0.09f, 0.85);
 
-		// dessins levels cave 1
-		tailleLevel = 2 / nbLevels1;
-		// positionLevel = 1 - tailleLevel;
-		positionLevel = 2.7 - tailleLevel / 2;
-		for (int i = 1; i <= nbLevels1; i++) {
-			StdDraw.setPenColor(StdDraw.GREEN);
-			// StdDraw.line(-2.9 -0.09f,positionLevel,2.9+0.09f,positionLevel);
-			StdDraw.rectangle(0, positionLevel, 2.9 + 0.09f, tailleLevel / 2);
-			if (changePhase) {
-				StdDraw.picture(0, positionLevel,
-						"C:\\Users\\Yann-Ly\\eclipse-workspace\\VideoGame\\src\\ImageGame\\coffre pirate2.jpg", 0.2,
-						tailleLevel - 0.01);
-				// TableauxTresors.tresorsCave1[i - 1][1] = positionLevel;
-				positionY1ini[i - 1] = positionLevel;
-			} else {
-				if (Listes.contient(positionY1ini, positionLevel)) {
+		if (nbLevels1 != 0) {
+			// dessins levels cave 1
+			tailleLevel = 2 / nbLevels1;
+			// positionLevel = 1 - tailleLevel;
+			positionLevel = 2.7 - tailleLevel / 2;
+			for (int i = 1; i <= nbLevels1; i++) {
+				StdDraw.setPenColor(StdDraw.GREEN);
+				// StdDraw.line(-2.9 -0.09f,positionLevel,2.9+0.09f,positionLevel);
+				StdDraw.rectangle(0, positionLevel, 2.9 + 0.09f, tailleLevel / 2);
+				if (changePhase) {
 					StdDraw.picture(0, positionLevel,
 							"C:\\Users\\Yann-Ly\\eclipse-workspace\\VideoGame\\src\\ImageGame\\coffre pirate2.jpg", 0.2,
 							tailleLevel - 0.01);
-
+					// TableauxTresors.tresorsCave1[i - 1][1] = positionLevel;
+					positionY1ini[i - 1] = positionLevel;
 				} else {
-					StdDraw.setPenColor(StdDraw.RED);
-					StdDraw.filledRectangle(0, positionLevel, 0.2 / 2, (tailleLevel - 0.01) / 2);
-					StdDraw.setPenColor(StdDraw.BLACK);
-					StdDraw.text(0, positionLevel, "Empty");
-				}
+					if (Listes.contient(positionY1ini, positionLevel)) {
+						StdDraw.picture(0, positionLevel,
+								"C:\\Users\\Yann-Ly\\eclipse-workspace\\VideoGame\\src\\ImageGame\\coffre pirate2.jpg",
+								0.2, tailleLevel - 0.01);
 
+					} else {
+						StdDraw.setPenColor(StdDraw.RED);
+						StdDraw.filledRectangle(0, positionLevel, 0.2 / 2, (tailleLevel - 0.01) / 2);
+						StdDraw.setPenColor(StdDraw.BLACK);
+						StdDraw.text(0, positionLevel, "Empty");
+					}
+
+				}
+				positionLevel = positionLevel - tailleLevel;
 			}
-			positionLevel = positionLevel - tailleLevel;
+			tailleNiv1 = tailleLevel;
+
+		} else {
+			tailleNiv1 = 2;
 		}
-		tailleNiv1 = tailleLevel;
 
 		/*
 		 * tailleLevel = 2/nbLevels1; positionLevel = 1/nbLevels1; for (int i = 1;
@@ -128,70 +132,81 @@ public class DrawEnvironnement {
 		 * 
 		 * positionLevel = positionLevel + 2*positionLevel; }
 		 */
+		if (nbLevels2 != 0) {
 
-		// dessins levels cave 2
-		tailleLevel = 2 / nbLevels2;
-		// positionLevel = 1 - tailleLevel;
-		positionLevel = 0.7 - tailleLevel / 2;
-		for (int i = 1; i <= nbLevels2; i++) {
-			StdDraw.setPenColor(StdDraw.BLUE);
-			// StdDraw.line(-2.9 -0.09f,positionLevel,2.9+0.09f,positionLevel);
-			StdDraw.rectangle(0, positionLevel, 2.9 + 0.09f, tailleLevel / 2);
-			if (changePhase) {
-				StdDraw.picture(0, positionLevel,
-						"C:\\Users\\Yann-Ly\\eclipse-workspace\\VideoGame\\src\\ImageGame\\coffre pirate2.jpg", 0.2,
-						tailleLevel - 0.01);
-				// TableauxTresors.tresorsCave1[i - 1][1] = positionLevel;
-				positionY2ini[i - 1] = positionLevel;
-			} else {
-				if (Listes.contient(positionY2ini, positionLevel)) {
+			// dessins levels cave 2
+			tailleLevel = 2 / nbLevels2;
+			// positionLevel = 1 - tailleLevel;
+			positionLevel = 0.7 - tailleLevel / 2;
+			for (int i = 1; i <= nbLevels2; i++) {
+				StdDraw.setPenColor(StdDraw.BLUE);
+				// StdDraw.line(-2.9 -0.09f,positionLevel,2.9+0.09f,positionLevel);
+				StdDraw.rectangle(0, positionLevel, 2.9 + 0.09f, tailleLevel / 2);
+				if (changePhase) {
 					StdDraw.picture(0, positionLevel,
 							"C:\\Users\\Yann-Ly\\eclipse-workspace\\VideoGame\\src\\ImageGame\\coffre pirate2.jpg", 0.2,
 							tailleLevel - 0.01);
-
+					// TableauxTresors.tresorsCave1[i - 1][1] = positionLevel;
+					positionY2ini[i - 1] = positionLevel;
 				} else {
-					StdDraw.setPenColor(StdDraw.RED);
-					StdDraw.filledRectangle(0, positionLevel, 0.2 / 2, (tailleLevel - 0.01) / 2);
-					StdDraw.setPenColor(StdDraw.BLACK);
-					StdDraw.text(0, positionLevel, "Empty");
+					if (Listes.contient(positionY2ini, positionLevel)) {
+						StdDraw.picture(0, positionLevel,
+								"C:\\Users\\Yann-Ly\\eclipse-workspace\\VideoGame\\src\\ImageGame\\coffre pirate2.jpg",
+								0.2, tailleLevel - 0.01);
+
+					} else {
+						StdDraw.setPenColor(StdDraw.RED);
+						StdDraw.filledRectangle(0, positionLevel, 0.2 / 2, (tailleLevel - 0.01) / 2);
+						StdDraw.setPenColor(StdDraw.BLACK);
+						StdDraw.text(0, positionLevel, "Empty");
+					}
+
 				}
-
+				positionLevel = positionLevel - tailleLevel;
 			}
-			positionLevel = positionLevel - tailleLevel;
-		}
-		tailleNiv2 = tailleLevel;
+			tailleNiv2 = tailleLevel;
 
-		// dessins levels cave 3
-		tailleLevel = 1.7 / nbLevels3;
-		// positionLevel = 1 - tailleLevel;
-		positionLevel = -1.3 - tailleLevel / 2;
-		for (int i = 1; i <= nbLevels3; i++) {
-			StdDraw.setPenColor(StdDraw.RED);
-			// StdDraw.line(-2.9 -0.09f,positionLevel,2.9+0.09f,positionLevel);
-			StdDraw.rectangle(0, positionLevel, 2.9 + 0.09f, tailleLevel / 2);
-			if (changePhase) {
-				StdDraw.picture(0, positionLevel,
-						"C:\\Users\\Yann-Ly\\eclipse-workspace\\VideoGame\\src\\ImageGame\\coffre pirate2.jpg", 0.2,
-						tailleLevel - 0.01);
-				// TableauxTresors.tresorsCave1[i - 1][1] = positionLevel;
-				positionY3ini[i - 1] = positionLevel;
-			} else {
-				if (Listes.contient(positionY3ini, positionLevel)) {
+		} else {
+			tailleNiv2 = 2;
+		}
+
+		if (nbLevels3 != 0) {
+
+			// dessins levels cave 3
+			tailleLevel = 1.7 / nbLevels3;
+			// positionLevel = 1 - tailleLevel;
+			positionLevel = -1.3 - tailleLevel / 2;
+			for (int i = 1; i <= nbLevels3; i++) {
+				StdDraw.setPenColor(StdDraw.RED);
+				// StdDraw.line(-2.9 -0.09f,positionLevel,2.9+0.09f,positionLevel);
+				StdDraw.rectangle(0, positionLevel, 2.9 + 0.09f, tailleLevel / 2);
+				if (changePhase) {
 					StdDraw.picture(0, positionLevel,
 							"C:\\Users\\Yann-Ly\\eclipse-workspace\\VideoGame\\src\\ImageGame\\coffre pirate2.jpg", 0.2,
 							tailleLevel - 0.01);
-
+					// TableauxTresors.tresorsCave1[i - 1][1] = positionLevel;
+					positionY3ini[i - 1] = positionLevel;
 				} else {
-					StdDraw.setPenColor(StdDraw.RED);
-					StdDraw.filledRectangle(0, positionLevel, 0.2 / 2, (tailleLevel - 0.01) / 2);
-					StdDraw.setPenColor(StdDraw.BLACK);
-					StdDraw.text(0, positionLevel, "Empty");
-				}
+					if (Listes.contient(positionY3ini, positionLevel)) {
+						StdDraw.picture(0, positionLevel,
+								"C:\\Users\\Yann-Ly\\eclipse-workspace\\VideoGame\\src\\ImageGame\\coffre pirate2.jpg",
+								0.2, tailleLevel - 0.01);
 
+					} else {
+						StdDraw.setPenColor(StdDraw.RED);
+						StdDraw.filledRectangle(0, positionLevel, 0.2 / 2, (tailleLevel - 0.01) / 2);
+						StdDraw.setPenColor(StdDraw.BLACK);
+						StdDraw.text(0, positionLevel, "Empty");
+					}
+
+				}
+				positionLevel = positionLevel - tailleLevel;
 			}
-			positionLevel = positionLevel - tailleLevel;
+			tailleNiv3 = tailleLevel;
+
+		} else {
+			tailleNiv3 = 1.7;
 		}
-		tailleNiv3 = tailleLevel;
 
 		// dessin colonne compteurs
 		// StdDraw.setPenColor(StdDraw.BLACK);
@@ -206,7 +221,7 @@ public class DrawEnvironnement {
 
 		// initialisation compteurs
 		CompteurJoueur.Compt(0, 0);
-		//StdDraw.show(20);
+		// StdDraw.show(20);
 
 	}
 
